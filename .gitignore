@@ -1,0 +1,16 @@
+# Java build files.
+*.class
+
+# Eclipse
+/bin/
+
+# NetBeans
+/nbproject/private/
+/build/
+
+# Visual Studio Code
+*.log*
+.vscode
+
+# macOS
+.DS_Store

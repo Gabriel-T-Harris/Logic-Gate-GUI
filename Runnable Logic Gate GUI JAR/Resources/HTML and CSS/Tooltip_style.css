@@ -1,0 +1,14 @@
+/*
+Purpose: Style Tooltips for Logic_Gate_GUI
+Programmer: Gabriel Toban Harris
+Date: 2018-5-7
+*/
+
+@charset "utf-8";
+
+table, tr, th, td
+{
+ border-collapse: collapse;
+ border: 1px solid;
+ text-align: center;
+}

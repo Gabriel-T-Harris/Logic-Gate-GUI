@@ -1,0 +1,7 @@
+Due to issues with loading HTML pages from a JAR the HTML stuff is stored outside of the JAR.
+
+The issue has to do with the HTML pages requiring absolute paths, while the application uses relative paths.
+
+The JAR still contains the html files in the Resource folder within the JAR.
+
+An alternate soultion would be to turn the HTML pages into pictures.

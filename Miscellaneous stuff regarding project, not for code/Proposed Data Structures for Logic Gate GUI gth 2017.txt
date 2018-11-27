@@ -1,0 +1,52 @@
+Proposed data structures for Logic Gate GUI
+
+Note only looking at logic gate 'back end' part, as oppose to stuff like scrolling, saving, appearence, ....
+
+1)
+Use tree graph. Each gate is a node. Arcs show how stuff is connected.
+
+Tree graph would have the root be the last node evaluated, therefore the leaves would  be evaluated 1st, than the next level, until finaly reaching the root.
+Tree graph would have to be evaluated in some special way, using some sort of algorithem.
+
+Tree graph could be made using someone else's already existing tree graph package. Could be made personaly through multidimensional linked-lists of custom type. Also could modify someone else's code.
+
+2)
+Combination of map and 2 dimensional linked-list.
+
+Map uses key as unique value for each logic gate, to obtain said logic gate's location. Maps value (unique i.d.) to value (location).
+Map allows for convient way to know where a gate is located.
+
+Logic gates would have an arraylist of which gates connect to them (input, not output). Said values would be used with map to find location of said gates.
+Linked-list would be like a ragged matrix. Rows in matrix would be reflective of logic gate's level.
+Thus when placing a logic gate in linked-list, gate would be placed in specific row then added to the 'right' most place.
+
+Linked-list would be evaluated starting at 1st row, then working 'down' (row #1 to row #2 to row #last).
+
+Level of a gate is determined as being 1 greater than the greatest level of the gate connected to it.
+Base input gates start at level n, n doesn't matter, I suggest n is 1.
+
+When level of a gate changes, gate would be moved to appropriate location in linked-list. Note appropriate is largely based on row for location.
+Moving a gate would involve creating a new gate and updating corresponding value in map. Essentially process would be, create new gate and place it in linked-list, then remove gate from previous location, then location of gate would be updated in map.
+Removing a gate may be problematic as could change order of gates in said level.
+
+Details and issues regarding 2):
+
+I figure placing a gate in linked-list then determining location will be simple due to gates having unique i.d..
+
+Level is to prevent a circle in circuit. Level also sets order for evaluating gates.
+With linked-list, one can have multiple seperate logic circuits without any issue. As opposed to convultedness that would be involved with a tree and combining multiple trees together when joing different circuits.
+Determinng level is rather simple so should be fine.
+Option for level is set it when 1st gate is connected, then only accept gate connections from gates of a lower level than current gate.
+Issue would be it forces gates to be connected in specific order, though such is minor. In event of poor ordering one could disconnect all than start reconnecting anew.
+For dealing with a domino effect, one could either only allow gate connections to change for end point gates xor have gates know what gate they are outputing to.
+
+Moving gates around (changing location) due to other gates being removed and-or changing of a gate's level, involves changing a gate's location.
+The changing of a gate's location in regards to creating new gate, removing old gate, and updating map; are doable, though annoying. The main issue is when a gate is removed, either due to changing a gate's location xor removing the gate from the universal space (linked-list).
+Issue with removing gate lies in the other gates in sape row that come 'after' it being moved to fill in the now empty spot.
+A possible solutions are instead of removing a gate from...one could instead replace it with a dummy gate, then code interactions with dummy gate. Dummy gate is kind of weak in regards to a solution. A nice solution would be something that prevents elements from shifting to fill in gaps; then when a new gate is added to that row, said gate could fill in gaps.
+Ideal solution might be doable with custom linked-list.
+
+Biggest issues are: domino effect regarding gate level changing, gate location changing, and the domino effect caused by removing a gate.
+
+
+In regards to U.I. for connecting gates, I figure something like have mouse in select/connect setting (setting determines what a mouse click does) then have 1st click determine what to connect and have 2nd click determine what to connect to. Click is pressed and released.
